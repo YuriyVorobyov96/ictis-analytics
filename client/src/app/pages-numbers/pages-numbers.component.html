@@ -1,0 +1,57 @@
+<div class="page-title">
+  <h4>
+    Анализ страниц
+    <i
+      class="material-icons black-text pointer"
+      (click)="openInfo()"
+    >
+      info_outline
+    </i>
+  </h4>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFilter()
+    }"
+    data-tooltip="Открыть опции"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-pages-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+>
+</app-pages-filter>
+
+<table class="highlight mb2" *ngIf="!pending">
+  <thead>
+  <tr>
+    <th>Заголовок</th>
+    <th>Адрес страницы</th>
+    <th>Число просмотров</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let page of pages">
+    <td>{{page.title}}</td>
+    <td>{{page.path}}</td>
+    <td>{{page.number}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<app-loader *ngIf="pending"></app-loader>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+  <div class="tap-target-content">
+    <h5>Зачем нужна эта страница?</h5>
+    <p>Страница “Анализ страниц” покажет вам самые посещаемые страницы.</p>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="page-title">
+  <h5>Города</h5>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFilter()
+    }"
+    data-tooltip="Открыть опции"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-maps-filter 
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+>
+</app-maps-filter>
+
+<div class="analytics-block" style="display: flex; justify-content: center; height: 60vh" [style.display]="pending ? 'none' : 'flex'">
+  <div id="Graph" #Graph style="height: inherit"></div>
+</div>
+
+<app-loader *ngIf="pending"></app-loader>

@@ -1,0 +1,28 @@
+<div class="page-title">
+  <h5></h5>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFilter()
+    }"
+    data-tooltip="Открыть опции"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-users-tree-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+>
+</app-users-tree-filter>
+
+<div>
+  <div id="sigma-container" #UsersTree></div>
+</div>
+
+<app-loader *ngIf="pending"></app-loader>

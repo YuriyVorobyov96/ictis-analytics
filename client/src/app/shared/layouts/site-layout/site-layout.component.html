@@ -1,0 +1,42 @@
+<ul class="sidenav sidenav-fixed a-sidenav">
+  <h4>ИКТИБ Аналитика</h4>
+  <hr>
+
+  <h4>Сайт</h4>
+  <li
+    class="bold"
+    *ngFor="let link of links"
+    routerLinkActive="active"
+  >
+    <a [routerLink]="[link.url]" class="waves-effect waves-orange">
+      {{link.name}}
+    </a>
+  </li>
+
+  <hr>
+
+  <h4>Сообщество ВКонтакте</h4>
+  <li
+    class="bold"
+    *ngFor="let linkVk of linksVk"
+    routerLinkActive="active"
+  >
+    <a [routerLink]="[linkVk.url]" class="waves-effect waves-orange">
+      {{linkVk.name}}
+    </a>
+  </li>
+
+  <li class="bold last">
+    <a href="#" class="waves-effect waves-orange" (click)="logout($event)">
+      Выйти
+    </a>
+  </li>
+</ul>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
+<div style="top: 0px; position: fixed; left: 0px;">
+  <a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">info</i></a>
+</div>

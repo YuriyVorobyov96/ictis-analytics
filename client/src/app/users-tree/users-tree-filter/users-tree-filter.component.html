@@ -1,0 +1,17 @@
+<div class="filter">
+  <div class="fr" style="justify-content: flex-end;">
+    <div class="col order">
+      <div class="input-field inline order-position-input" ngDefaultControl [(ngModel)]="top">
+        <input type="number" id="number" min="1">
+        <label for="number">Топ</label>
+      </div>
+    </div>
+
+  <button
+    class="btn waves-effect wavers-light btn-small"
+    (click)="submitFilter()"
+    [disabled]="!isValid"
+  >
+    Применить
+  </button>
+</div>

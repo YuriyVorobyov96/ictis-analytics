@@ -1,0 +1,76 @@
+<div class="page-title">
+  <h4>
+    Анализ интересов
+    <i
+      class="material-icons black-text pointer"
+      (click)="openInfo()"
+    >
+      info_outline
+    </i> 
+  </h4>
+</div>
+
+
+<p>Всего интересов: <strong>{{total}}</strong></p>
+<p>Всего пар: <strong>{{pairs}}</strong></p>
+
+<div style="width: 450px; margin-right: auto;" [style.display]="pending ? 'none' : 'block'">
+  <div>
+    <button
+      (click)="isFilterVisible = !isFilterVisible"
+      class="btn btn-small"
+      [ngClass]="{
+        'active': isFilterVisible,
+        'red': isFilter()
+      }"
+      data-tooltip="Открыть опции"
+      data-position="left"
+      #tooltip
+      style="float: right;"
+    >
+      <i class="material-icons">filter_list</i>
+    </button>
+
+    <app-interests-filter
+      *ngIf="isFilterVisible"
+      (onFilter)="applyFilter($event)"
+    >
+    </app-interests-filter>
+  </div>
+</div>
+
+<div style="display: flex; width: 100%;">
+  <div style="width: 600px; margin-right: auto;">
+    <table class="highlight mb2"  *ngIf="!pending">
+      <thead>
+      <tr>
+        <th>Интерес</th>
+        <th>Количество</th>
+        <th>Процент</th>
+      </tr>
+      </thead>
+    
+      <tbody>
+      <tr *ngFor="let interest of interests">
+        <td>{{interest.key}}</td> 
+        <td>{{interest.number}}</td>
+        <td>{{interest.percent}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="analytics-block pb3" style="height:500px; margin-top: 1.85%;" [style.display]="pending ? 'none' : 'block'">
+    <canvas #chart></canvas>
+  </div>
+</div>
+
+<app-loader *ngIf="pending"></app-loader>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+  <div class="tap-target-content">
+    <h5>Зачем нужна эта страница?</h5>
+    <p>Страница "Анализ интересов" поможет вам понять интересы сообщества.</p>
+  </div>
+</div>

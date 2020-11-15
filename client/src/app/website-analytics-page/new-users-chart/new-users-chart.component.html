@@ -1,0 +1,28 @@
+<div class="page-title">
+  <h5>Новые пользователи</h5>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFilter()
+    }"
+    data-tooltip="Открыть опции"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-numbers-filter 
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+>
+</app-numbers-filter>
+
+<div class="analytics-block pb3" style="height:500px;" [style.display]="pending ? 'none' : 'block'">
+  <p>Число новых пользователей за промежуток: <strong>{{count}}</strong></p>
+  <canvas #newUsersChart></canvas>
+</div>
+<app-loader *ngIf="pending"></app-loader>

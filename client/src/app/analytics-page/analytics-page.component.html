@@ -1,0 +1,21 @@
+<div [style.display]="pending ? 'none' : 'block'">
+  <div class="analytics-block pb3">
+    <h5>Пользователи</h5>
+    <canvas #usersCount></canvas>
+  </div>
+  
+  <div class="analytics-block pb3">
+    <h5>Новые пользователи</h5>
+    <canvas #newUsersCount></canvas>
+  </div>
+
+  <div class="analytics-block pb3">
+    <h5>Сессии</h5>
+    <canvas #sessionsCount></canvas>
+  </div>
+
+  <div class="analytics-block pb3">
+    <h5>Просмотры страниц</h5>
+    <canvas #pageViewsCount></canvas>
+  </div>
+</div>

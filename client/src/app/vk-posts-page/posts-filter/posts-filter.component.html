@@ -1,0 +1,35 @@
+<div class="filter">
+  <div class="fr">
+    <div class="col order">
+      <div class="input-field inline order-position-input" ngDefaultControl [(ngModel)]="top">
+        <input type="number" id="number" min="1">
+        <label for="number">Топ</label>
+      </div>
+    </div>
+    <div class="col filter-pickers" style="width: 60%;">
+      <div class="input-field col s12">
+        <select #selectType [(ngModel)]="selectedTypeOption">
+          <option value="" disabled selected>Тип графика</option>
+          <option *ngFor="let type of types" value="{{type.value}}">{{type.name}}</option>
+        </select>
+        <label>Тип графика</label>
+      </div>
+
+      <div class="input-field col s12">
+        <select #selectLabel [(ngModel)]="selectedLabelOption">
+          <option value="" disabled selected>Тип значений</option>
+          <option *ngFor="let label of labels" value="{{label.value}}">{{label.name}}</option>
+        </select>
+        <label>Тип значений</label>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="btn waves-effect wavers-light btn-small"
+    (click)="submitFilter()"
+    [disabled]="!isValid"
+  >
+    Применить
+  </button>
+</div>

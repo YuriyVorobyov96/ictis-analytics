@@ -1,0 +1,125 @@
+<div class="page-title">
+  <h4>
+    Обзор за вчера ({{yesterday | date:'dd.MM.yyyy'}})
+    <i
+      class="material-icons black-text pointer"
+      (click)="openInfo()"
+    >
+      info_outline
+    </i>
+  </h4>
+</div>
+
+<div
+  *ngIf="data$ | async as data; else loader"
+  class="row"
+>
+  <div class="col s12 l6">
+    <div class="card light-blue lighten-2 white-text">
+      <div class="card-content">
+          <span class="card-title">Пользователи:</span>
+          <h3>{{data.usersCount.yesterday}}</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.usersCount.isHigher,
+              'red-text': !data.usersCount.isHigher
+            }"
+          >
+            <i class="material-icons">
+              {{data.usersCount.isHigher ? 'arrow_upward' : 'arrow_downward' }}
+            </i>
+            {{data.usersCount.percent}}%
+          </h3>
+          <p>
+            Число пользователей вчера на {{data.usersCount.percent}}% {{data.usersCount.isHigher ? 'выше' : 'ниже' }} среднего: {{data.usersCount.compare}} в день
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 l6">
+    <div class="card orange lighten-2 white-text">
+      <div class="card-content">
+          <span class="card-title">Новые пользователи:</span>
+          <h3>{{data.newUsersCount.yesterday}}</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.newUsersCount.isHigher,
+              'red-text': !data.newUsersCount.isHigher
+            }"
+          >
+            <i class="material-icons">
+              {{data.newUsersCount.isHigher ? 'arrow_upward' : 'arrow_downward' }}
+            </i>
+            {{data.newUsersCount.percent}}%
+          </h3>
+          <p>
+            Число новых пользователей вчера на {{data.newUsersCount.percent}}% {{data.newUsersCount.isHigher ? 'выше' : 'ниже' }} среднего значения: {{data.newUsersCount.compare}} в день
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 l6">
+    <div class="card deep-purple lighten-1 white-text">
+      <div class="card-content">
+          <span class="card-title">Сессии:</span>
+          <h3>{{data.sessionsCount.yesterday}}</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.sessionsCount.isHigher,
+              'red-text': !data.sessionsCount.isHigher
+            }"
+          >
+            <i class="material-icons">
+              {{data.sessionsCount.isHigher ? 'arrow_upward' : 'arrow_downward' }}
+            </i>
+            {{data.sessionsCount.percent}}%
+          </h3>
+          <p>
+            Число сессий вчера на {{data.sessionsCount.percent}}% {{data.sessionsCount.isHigher ? 'выше' : 'ниже' }} среднего значения: {{data.sessionsCount.compare}} в день
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 l6">
+    <div class="card light-green lighten-1 white-text">
+      <div class="card-content">
+          <span class="card-title">Просмотр страниц:</span>
+          <h3>{{data.pageViewsCount.yesterday}}</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.pageViewsCount.isHigher,
+              'red-text': !data.pageViewsCount.isHigher
+            }"
+          >
+            <i class="material-icons">
+              {{data.pageViewsCount.isHigher ? 'arrow_upward' : 'arrow_downward' }}
+            </i>
+            {{data.pageViewsCount.percent}}%
+          </h3>
+          <p>
+            Число просмотров страниц вчера на {{data.pageViewsCount.percent}}% {{data.pageViewsCount.isHigher ? 'выше' : 'ниже' }} среднего значения: {{data.pageViewsCount.compare}} в день
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-analytics-page></app-analytics-page>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+  <div class="tap-target-content">
+    <h5>Зачем нужна эта страница?</h5>
+    <p>Страница “Обзор” покажет динамику активности за предыдущий день. Сравнение со средними значениями поможет вам понять, как идут дела.</p>
+  </div>
+</div>

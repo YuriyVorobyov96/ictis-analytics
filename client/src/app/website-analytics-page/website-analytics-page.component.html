@@ -1,0 +1,26 @@
+<div class="page-title">
+  <h4>
+    Анализ пользователей сайта
+    <i
+      class="material-icons black-text pointer"
+      (click)="openInfo()"
+    >
+      info_outline
+    </i> 
+  </h4>
+</div>
+
+<app-users-chart></app-users-chart>
+<app-new-users-chart></app-new-users-chart>
+<app-sessions-chart></app-sessions-chart>
+<app-pages-chart></app-pages-chart>
+<app-countries-chart></app-countries-chart>
+<app-regions-chart></app-regions-chart>
+<app-cities-chart></app-cities-chart>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+  <div class="tap-target-content">
+    <h5>Зачем нужна эта страница?</h5>
+    <p>Страница "Анализ пользователей сайта" поможет вам оценить пользователей сайта.</p>
+  </div>
+</div>

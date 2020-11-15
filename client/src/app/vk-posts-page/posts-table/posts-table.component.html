@@ -1,0 +1,56 @@
+<div class="page-title">
+  <h4></h4>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFilter()
+    }"
+    data-tooltip="Открыть опции"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-table-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+>
+</app-table-filter>
+
+<table class="highlight mb2" *ngIf="!pending">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>Дата и время</th>
+    <th>Ссылка</th>
+    <!-- <th>Текст</th> -->
+    <th>Лайки</th>
+    <th>Репосты</th>
+    <th>Комментарии</th>
+    <th>Просмотры</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let post of posts">
+    <td>{{post.id}}</td>
+    <td>{{post.date}}</td>
+    <td>{{post.url}}</td>
+    <!-- <td>
+      <div class="table-text">
+        {{post.text}}
+      </div>
+    </td> -->
+    <td>{{post.likesCount}}</td>
+    <td>{{post.repostsCount}}</td>
+    <td>{{post.commentsCount}}</td>
+    <td>{{post.viewsCount}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<app-loader *ngIf="pending"></app-loader>
